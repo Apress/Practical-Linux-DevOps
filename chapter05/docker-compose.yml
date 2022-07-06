@@ -1,0 +1,49 @@
+version: '2.1'
+services: 
+  httpd:
+    build: ./httpd
+    restart: always
+    ports:
+      - "80:80"
+    container_name: httpd
+    volumes:
+    - 'rainloop:/var/www/html/rainloop'
+
+  rainloop:
+    build: ./rainloop
+    restart: always
+    container_name: rainloop
+    volumes:
+    - 'rainloop:/var/www/html/rainloop'
+
+  postfix:
+    restart: always
+    hostname: docker.devops.lab
+    build: ./postfix
+    container_name: postfix
+    ports:
+      - "25:25"
+    volumes:
+      - 'mail:/var/mail'
+      - 'home:/home'
+      - 'postfix-certs:/etc/ssl'
+
+  dovecot:
+    restart: always
+    hostname: docker.devops.lab
+    depends_on:
+      - postfix
+    build: ./dovecot
+    container_name: dovecot
+    ports:
+      - "143:143"
+    volumes:
+      - "mail:/var/mail"
+      - "home:/home"
+      - "dovecot-certs:/etc/dovecot/private"
+volumes:
+  mail:
+  home:
+  postfix-certs:
+  dovecot-certs:
+  rainloop:

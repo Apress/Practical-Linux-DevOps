@@ -1,0 +1,44 @@
+version: '3.3'
+
+volumes:
+  wwwroot:
+  mysql:
+  
+services:
+  php:
+    build: ./php
+    container_name: php-apache
+    privileged: true
+    volumes:
+      - wwwroot:/var/www/html
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 80:80
+  
+  db:
+    image: mariadb
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: password              
+      MYSQL_DATABASE: mydatabase
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - backend
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - php
+      - db
+
+networks:
+  frontend:
+  backend:

@@ -1,0 +1,15 @@
+zone "devops.lab" in {
+    	type master;
+	# The path to your domain zone file 
+    	file "zones/devops.lab.zone";	
+	# The IP address of the future DNS slave
+    	allow-transfer { 10.128.1.3; };         	
+};
+
+zone "128.10.in-addr.arpa" {
+    	type master;
+	# 10.128.1.0/24 subnet
+    	file "/etc/bind/zones/10.128.zone";	
+	# The IP address of the DNS slave	
+    	allow-transfer { 10.128.1.3; };			
+};

@@ -1,0 +1,9 @@
+server {
+  listen 443 ssl;
+  server_name <%= node[:fqdn] %>;
+  ssl_certificate /etc/nginx/ssl/mycert.pem;
+  ssl_certificate_key /etc/nginx/ssl/mycert.key;
+  ssl_protocols TLSv1.2 TLSv1.3;
+  ssl on;
+  root /var/www/html;
+}

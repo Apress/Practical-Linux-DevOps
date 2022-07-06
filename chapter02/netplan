@@ -1,0 +1,30 @@
+network:
+  version: 2   
+  ethernets:
+    eth0:
+      dhcp4: false
+      dhcp6: false
+#      addresses:
+#      - 10.128.1.10/24
+#      gateway4: 10.128.1.1
+#      nameservers:
+#         addresses:
+#         - 10.128.1.2
+#         - 8.8.8.8
+#         search:
+#         - devops.lab
+
+  bridges:
+    br0:
+      interfaces: [eth0]
+      addresses: [10.128.1.10/24]
+      gateway4: 10.128.1.1
+      mtu: 1500
+      nameservers:
+        addresses: [10.128.1.2,10.128.1.3,8.8.8.8]
+        search: [devops.lab]
+      parameters:
+        stp: true
+        forward-delay: 4
+      dhcp4: no
+      dhcp6: no

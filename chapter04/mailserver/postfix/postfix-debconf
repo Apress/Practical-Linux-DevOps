@@ -1,0 +1,25 @@
+debconf	postfix/destinations	string	HOSTNAME, mail,  	localhost.devops.lab, , localhost
+debconf	postfix/newaliases	boolean	false
+debconf	postfix/relayhost	string	
+# Install postfix despite an unsupported kernel?
+debconf	postfix/kernel_version_warning	boolean	
+debconf	postfix/sqlite_warning	boolean	
+debconf	postfix/retry_upgrade_warning	boolean	
+# Set this variable to match your network
+debconf	postfix/mynetworks	string	127.0.0.0/8 [::ffff:127.0.0.0]/104 	[::1]/128 TRUSTED_NETWORK
+debconf	postfix/lmtp_retired_warning	boolean	true
+debconf	postfix/rfc1035_violation	boolean	false
+debconf	postfix/compat_conversion_warning	boolean	true
+debconf	postfix/procmail	boolean	false
+debconf	postfix/recipient_delim	string	+
+debconf	postfix/mailname	string	devops.lab
+debconf	postfix/main_cf_conversion_warning	boolean	true
+debconf	postfix/tlsmgr_upgrade_warning	boolean	
+debconf	postfix/chattr	boolean	false
+debconf	postfix/dynamicmaps_conversion_warning	boolean	
+debconf	postfix/root_address	string	
+debconf	postfix/mailbox_limit	string	0
+debconf	postfix/protocols	select	ipv4
+debconf	postfix/main_mailer_type	select	Internet Site
+debconf	postfix/mydomain_warning	boolean	
+debconf	postfix/relay_restrictions_warning	boolean	#

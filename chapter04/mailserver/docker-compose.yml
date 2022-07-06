@@ -1,0 +1,31 @@
+version: '2.1'
+services: 
+  postfix:
+    restart: always
+    hostname: mail.devops.lab
+    build: ./postfix 
+    container_name: postfix
+    ports:
+      - "25:25" 
+    volumes: 
+      - 'mail:/var/mail'
+      - 'home:/home'
+      - 'postfix-certs:/etc/ssl'
+  dovecot:
+    restart: always
+    hostname: mail.devops.lab
+    depends_on:
+      - postfix
+    build: ./dovecot 
+    container_name: dovecot
+    ports:
+      - "143:143" 
+    volumes: 
+      - "mail:/var/mail"
+      - "home:/home"
+      - "dovecot-certs:/etc/dovecot/private"
+volumes: 
+  mail:
+  home:
+  postfix-certs:
+  dovecot-certs:

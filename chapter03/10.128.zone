@@ -1,0 +1,25 @@
+$TTL    604800
+@   IN   SOA   dns01.devops.lab. root.devops.lab. (
+                              7        ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+
+; name servers – NS records
+	IN	NS	dns01.devops.lab.
+	IN	NS	dns02.devops.lab.
+
+; name server resolution
+dns01.tiny.lab. IN      A 10.128.1.2
+dns02.tiny.lab. IN      A 10.128.1.3
+
+; PTR Records
+1.1	IN  PTR   router.devops.lab.	; 10.128.1.1
+;
+3.1	IN  PTR   dns01.devops.lab.	; 10.128.1.2
+4.1	IN  PTR   dns02.devops.lab.	; 10.128.1.3
+;
+;
+;
+10.1 	IN  PTR   workstation.devops.lab. ; 10.128.1.10

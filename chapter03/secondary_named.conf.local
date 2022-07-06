@@ -1,0 +1,11 @@
+zone "devops.lab" {
+    type slave;
+    file "/etc/bind/zones/devops.lab.zone";
+    masters { 10.128.1.2; };   	
+};
+
+zone "128.10.in-addr.arpa" {
+    type slave;
+    file "/etc/bind/zones/10.128.zone";			
+    masters { 10.128.1.2; };		
+};
